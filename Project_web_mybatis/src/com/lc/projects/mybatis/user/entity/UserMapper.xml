@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.projects.mybatis.user.mapper.UserMapper">
+	<resultMap type="_User" id="userResultMap">
+		<id property="id" column="id"/>
+		<result property="userId" column="user_id"/>
+		<result property="userDomain" column="user_domain"/>
+	</resultMap>
+	
+	
+	<select id="selectByUserId" parameterType="int" resultMap="userResultMap" >
+		select * from user_tbl where id = #{id}
+	</select>
+	
+	<select id="selectByUserDomain" parameterType="String" resultType="java.util.List" resultMap="userResultMap" >
+		select * from user_tbl where user_domain like #{abc}
+	</select>
+	
+	<select id="addUser" parameterType="_User">
+		insert into user_tbl(id,user_id,user_domain,email,age) values(#{id},#{userId},#{userDomain},#{email},#{age}) 
+	</select>
+	
+	<select id="deleteUser" parameterType="int">
+		delete from user_tbl where id = #{id};
+	</select>
+	
+	<select id="updateUser" parameterType="_User">
+		update user_tbl set user_id = #{userId}, user_domain = #{userDomain},email = #{email},age=#{age} where id = #{id}
+	</select>
+	
+	<select id="getAllUser" parameterType="_User" resultMap="userResultMap">
+		select * from user_tbl;
+	</select>
+
+
+
+<!-- 
+	<select id="getUser2" resultMap="getUser2ResultMap" parameterType="int">
+		select u.id,u.user_id,u.user_domain,u.email,u.age,w.id as w_id,w.name,w.descrption,w.url,w.user_iden from user_tbl u, website_tbl w where u.id = w.user_iden and u.id = #{id}	
+	</select>
+	
+	<resultMap type="_User" id="getUser2ResultMap">
+		<id property="id" column="id"/>
+		<result property="userId" column="user_id"/>
+		<result property="userDomain" column="user_domain"/>
+		
+		<collection property="website" ofType="Website">
+			<result property="id" column="w_id"/>
+			<result property="name" column="name"/>
+			<result property="url" column="url"/>
+			<result property="desc" column="desc"/>
+			<result property="userIden" column="user_iden"/>
+		</collection>
+	</resultMap>
+	
+	<select id="getUser3" resultMap="getUser3ResultMap" parameterType="int">
+		select * from user_tbl u where u.id =#{id}
+	</select>
+	
+	<select id="getWebChild" parameterType="int" resultType="Website">
+		select * from website_tbl w where w.user_iden = #{id}
+	</select>
+	
+	<resultMap type="_User" id="getUser3ResultMap">
+		<id property="id" column="id"/>
+		<result property="userId" column="user_id"/>
+		<result property="userDomain" column="user_domain"/>
+		
+		<collection property="website" ofType="Website" column="id" select="getWebChild">
+		</collection>
+	</resultMap>
+	
+ -->		
+	
+</mapper>
