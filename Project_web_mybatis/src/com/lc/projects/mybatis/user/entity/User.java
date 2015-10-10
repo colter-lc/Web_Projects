@@ -1,6 +1,10 @@
 package com.lc.projects.mybatis.user.entity;
 
-public class User {
+import com.lc.projects.mybatis.base.BaseObject;
+
+public class User extends BaseObject {
+	private static final long serialVersionUID = 5364862350671061653L;
+	
 	private Integer id;
 	private String userId;
 	private String userDomain;

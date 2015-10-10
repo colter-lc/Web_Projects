@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:amq="http://activemq.apache.org/schema/core"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:cxf="http://cxf.apache.org/core"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://cxf.apache.org/jaxws
+		http://cxf.apache.org/schemas/jaxws.xsd
+		http://cxf.apache.org/core
+		http://cxf.apache.org/schemas/core.xsd">
+	
+	
+	<!-- redis POOL配置 -->
+	<bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+		<property name="maxActive" value="${initSize}" />
+		<property name="maxIdle" value="10" />
+		<property name="maxWait" value="1000" />
+		<property name="testOnBorrow" value="true"/>
+		<!-- 连接超时，采用默认 -->
+	</bean>
+	
+	<!-- jedis pool配置 -->
+	<bean id="jedisPool" class="redis.clients.jedis.JedisPool">
+		<constructor-arg index="0" ref="jedisPoolConfig" />
+		<constructor-arg index="1" value="${jedis.url}" />
+		<constructor-arg index="2" value="6379" />
+	</bean>
+	
+	<!-- memcache 客户端 -->
+	<!-- 
+	<bean id="memcachedClient" class="net.spy.memcached.spring.MemcachedClientFactoryBean">
+		<property name="servers" value="${org.mybatis.caches.memcached.servers}" />
+		<property name="failureMode" value="Retry" />
+		<property name="hashAlg">
+            <value type="net.spy.memcached.DefaultHashAlgorithm">KETAMA_HASH</value>
+		</property>
+		<property name="opTimeout" value="1000"/>
+		<property name="readBufferSize" value="16384"/>
+		<property name="transcoder">
+			<bean class="net.spy.memcached.transcoders.SerializingTranscoder">
+				<property name="compressionThreshold" value="1024"/>
+			</bean>
+		</property>
+	</bean>
+	-->
+	<!-- memcached操作类 -->
+  <!--   <bean id="spyMemcachedManager" class="xxxxxxxxx">
+		<property name="memClient">
+			<ref bean="memcachedClient"/> 
+		</property>
+	</bean>
+	-->
+</beans>

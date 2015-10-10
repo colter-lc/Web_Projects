@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lc.projects.mybatis.user.mapper.UserMapper">
+
+	<resultMap type="User" id="userResultMap">
+		<id property="id" column="id"/>
+		<result property="userId" column="user_id"/>
+		<result property="userDomain" column="user_domain"/>
+	</resultMap>
+	
+	
+	<select id="getUserById" parameterType="int" resultMap="userResultMap" >
+		select * from user_tbl where id = #{id}
+	</select>
+	
+	<select id="getUserByUserId" parameterType="String" resultMap="userResultMap" >
+		select * from user_tbl where user_id = #{userId}
+	</select>
+	
+	<select id="getUserByUserDomain" parameterType="String" resultType="java.util.List" resultMap="userResultMap" >
+		select * from user_tbl where user_domain like #{abc}
+	</select>
+	
+	<select id="addUser" parameterType="User">
+		insert into user_tbl(id,user_id,user_domain,email,age) values(#{id},#{userId},#{userDomain},#{email},#{age}) 
+	</select>
+	
+	<select id="deleteUser" parameterType="int">
+		delete from user_tbl where id = #{id};
+	</select>
+	
+	<select id="updateUser" parameterType="User">
+		update user_tbl set user_id = #{userId}, user_domain = #{userDomain},email = #{email},age=#{age} where id = #{id}
+	</select>
+	
+	<select id="getAllUser" parameterType="User" resultMap="userResultMap">
+		select * from user_tbl;
+	</select>
+
+	
+</mapper>
