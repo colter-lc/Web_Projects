@@ -2,7 +2,6 @@ package com.lc.projects.mybatis.user.service;
 
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,18 +14,6 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserMapper userMapper;
 	
-	
-	@Autowired
-	private SqlSessionFactory sqlSessionFactory;
-	
-//	public UserMapper getUserMapper() {
-//		return userMapper;
-//	}
-//
-//	public void setUserMapper(UserMapper userMapper) {
-//		this.userMapper = sqlSessionFactory.openSession().getMapper(UserMapper.class);
-//	}
-
 	@Override
 	public User getUserById(int id) {
 		return userMapper.getUserById(id);

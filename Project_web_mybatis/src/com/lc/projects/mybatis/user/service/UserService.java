@@ -2,8 +2,6 @@ package com.lc.projects.mybatis.user.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.lc.projects.mybatis.user.entity.User;
 
 public interface UserService {
