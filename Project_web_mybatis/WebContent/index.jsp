@@ -8,5 +8,12 @@
 </head>
 <body>
 	Welcome!
+	<form action="user/addUser.do" method="post" enctype="multipart/form-data">
+		User ID:<input type="text" name="userId" /> <br/>
+		User Domain:<input type="text" name="userDomain" /> <br/>
+		Email: <input type="text" name="email" /> <br/>
+		Age: <input type="text" name="age" /> <br/>
+		<button type="submit">Submit</button>
+	</form>
 </body>
 </html>

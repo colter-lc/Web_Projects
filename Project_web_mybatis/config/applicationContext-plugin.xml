@@ -29,6 +29,7 @@
 		<constructor-arg index="2" value="6379" />
 	</bean>
 	
+	
 	<!-- memcache 客户端 -->
 	<!-- 
 	<bean id="memcachedClient" class="net.spy.memcached.spring.MemcachedClientFactoryBean">

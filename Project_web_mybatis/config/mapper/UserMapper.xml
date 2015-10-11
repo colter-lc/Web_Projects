@@ -23,7 +23,7 @@
 	</select>
 	
 	<select id="addUser" parameterType="User">
-		insert into user_tbl(id,user_id,user_domain,email,age) values(#{id},#{userId},#{userDomain},#{email},#{age}) 
+		insert into user_tbl(user_id,user_domain,email,age) values(#{userId},#{userDomain},#{email},#{age}) 
 	</select>
 	
 	<select id="deleteUser" parameterType="int">
